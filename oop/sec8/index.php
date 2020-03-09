@@ -7,9 +7,20 @@ class Database {
 
     public static function connect(string $method)
     {
-        $obj = new static;
-        $obj->table;
-        self::$pdo = $method;
+        static::$pdo = $method;
+        return new static;
+    }
+
+    public function table(string $name)
+    {
+        $this->table = $name;
+        return $this;
+    }
+
+    public function insert(array $data)
+    {
+        var_dump("Connected to database using " . self::$pdo);
+        var_dump("INSERT INTO {$this->table} VALUES({$data})");
     }
 
     public static function create(array $data)
@@ -24,9 +35,5 @@ class Database {
 }
 
 header('Content-Type:text/plain', true);
-var_dump(Database::$operators);
-Database::connect('pdo');
-Database::create([]);
 
-$db = new Database();
-echo $db->getMethod() . PHP_EOL;
+Database::connect('pdo')->table('users')->insert(['username' => 'Terry', 'password' => 'secret']);
