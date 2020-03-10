@@ -3,6 +3,13 @@
 declare(strict_types = 1);
 
 require_once __DIR__ . '/vendor/autoload.php';
+require_once __DIR__ . '/src/Exception/exception.php';
+
+$db = new mysqli('jjj', 'root', '', 'bug');
+exit;
+$config = \App\Helpers\Config::getFileContent('yeyeuueu');
+var_dump($config);
+
 
 $application = new \App\Helpers\App();
 
